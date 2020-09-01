@@ -4,15 +4,21 @@
 
     <file>.</file>
 
+    <!-- Exclude dependency related files and generated files from being scanned. -->
     <exclude-pattern>node_modules/*</exclude-pattern>
     <exclude-pattern>languages/*</exclude-pattern>
 
+    <!-- Only check PHP files. -->
+    <arg name="extensions" value="php"/>
+
     <!-- Strip the filepaths down to the relevant bit. -->
     <arg name="basepath" value="."/>
+
     <!-- Show progress, show the error codes for each message (source). -->
     <arg value="sp"/>
 
     <!-- SNIFF FOR PHP CROSS-VERSION COMPATIBILITY -->
     <config name="testVersion" value="5.6-"/>
+    <rule ref="PHPCompatibilityWP"/>
 
 </ruleset>
