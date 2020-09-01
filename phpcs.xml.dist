@@ -21,13 +21,6 @@
     <!-- Show progress, show the error codes for each message (source). -->
     <arg value="sp"/>
 
-        <!-- Include the whole PEAR standard -->
-    <rule ref="PEAR">
-        <exclude name="PEAR.NamingConventions.ValidFunctionName"/>
-        <exclude name="PEAR.NamingConventions.ValidVariableName"/>
-        <exclude name="PEAR.Commenting.ClassComment"/>
-        <exclude name="PEAR.Commenting.InlineComment"/>
-    </rule>
 
     <!-- SNIFF FOR PHP CROSS-VERSION COMPATIBILITY -->
     <config name="testVersion" value="5.6-"/>
