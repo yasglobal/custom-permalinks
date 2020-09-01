@@ -5,8 +5,9 @@
     <file>.</file>
 
     <!-- Exclude dependency related files and generated files from being scanned. -->
-    <exclude-pattern>node_modules/*</exclude-pattern>
-    <exclude-pattern>languages/*</exclude-pattern>
+    <exclude-pattern>*/.git/*</exclude-pattern>
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/languages/*</exclude-pattern>
 
     <!-- Only check PHP files. -->
     <arg name="extensions" value="php"/>
@@ -14,8 +15,19 @@
     <!-- Strip the filepaths down to the relevant bit. -->
     <arg name="basepath" value="."/>
 
+    <!-- Show results with colors. -->
+    <arg name="colors"/>
+
     <!-- Show progress, show the error codes for each message (source). -->
     <arg value="sp"/>
+
+        <!-- Include the whole PEAR standard -->
+    <rule ref="PEAR">
+        <exclude name="PEAR.NamingConventions.ValidFunctionName"/>
+        <exclude name="PEAR.NamingConventions.ValidVariableName"/>
+        <exclude name="PEAR.Commenting.ClassComment"/>
+        <exclude name="PEAR.Commenting.InlineComment"/>
+    </rule>
 
     <!-- SNIFF FOR PHP CROSS-VERSION COMPATIBILITY -->
     <config name="testVersion" value="5.6-"/>
