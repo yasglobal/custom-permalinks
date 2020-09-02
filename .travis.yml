@@ -41,4 +41,3 @@ jobs:
         - composer lint
         - composer phpcs
       env: BUILD=sniff
-

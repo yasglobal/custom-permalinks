@@ -17,7 +17,7 @@
     </testsuites>
 
     <filter>
-        <whitelist>
+        <whitelist addUncoveredFilesFromWhitelist="true">
             <directory>./frontend</directory>
             <directory>./admin</directory>
             <file>custom-permalinks.php</file>
