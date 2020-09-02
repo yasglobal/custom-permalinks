@@ -1,0 +1,48 @@
+dist: xenial
+language: php
+# Test main supported versions of PHP against latest WP.
+php:
+  - 5.4
+  - 5.6
+  - 7.0
+  - 7.1
+  - 7.2
+  - 7.3
+  - 7.4
+
+# Specifies that Travis should create builds for master and release branches and also tags.
+branches:
+  only:
+    - master
+    - /^\d+\.\d+(\.\d+)?(-\S*)?$/
+    - /^release\/*/
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_install:
+  - |
+    # Remove Xdebug for a huge performance increase:
+    if [ -f ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini ]; then
+      phpenv config-rm xdebug.ini
+    else
+      echo "xdebug.ini does not exist"
+    fi
+  - |
+    # Raise PHP memory limit to 2048MB
+    echo 'memory_limit = 2048M' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - composer validate
+
+install:
+  - composer install
+
+jobs:
+  fast_finish: true
+  include:
+    - stage: sniff
+      script:
+        - composer lint
+        - composer phpcs
+      env: BUILD=sniff
+
